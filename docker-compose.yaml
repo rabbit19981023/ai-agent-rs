@@ -1,4 +1,16 @@
 services:
+  litellm:
+    image: litellm/litellm
+    command: ["--config", "/app/config.yaml"]
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./litellm_config.yaml:/app/config.yaml
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - JINA_API_KEY=${JINA_API_KEY}
+
   qdrant:
     image: qdrant/qdrant
     ports:
